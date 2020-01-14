@@ -10,10 +10,10 @@
 </head>
 <body>
 	<h4>Excellent Cats:</h4>
-	{{/* Ranging with slices */}}
+	{{/* Ranging with slices and structs */}}
 	<ul>
-		{{range $index, $element := .}}
-		<li>{{$index}} - {{$element}}</li>
+		{{range .}}
+		<li>{{.Name}} - {{.Nickname}}</li>
 		{{end}}
 	</ul>
 </body>

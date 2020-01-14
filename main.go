@@ -8,12 +8,27 @@ import (
 
 var tpl *template.Template
 
+type cat struct {
+	Name string
+	Nickname string
+}
+
 func init() {
 	tpl = template.Must(template.ParseFiles("templates/index.gohtml"))
 }
 
 func main() {
-	cats := []string{"Sophie", "Cecily", "Lulu"}
+	sophie := cat{
+		Name: "Sophie",
+		Nickname: "Fluff",
+	}
+
+	cecy := cat{
+		Name: "Cecily",
+		Nickname: "Fuzz",
+	}
+
+	cats := []cat{sophie, cecy}
 
 	err := tpl.Execute(os.Stdout, cats)
 	if err != nil {
