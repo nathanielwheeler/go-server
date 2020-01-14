@@ -9,6 +9,12 @@
 	<title>Ludicrious Injections</title>
 </head>
 <body>
-	{{.}}{{/* This is where I inject data */}}
+	<h4>Excellent Cats:</h4>
+	{{/* Ranging with slices */}}
+	<ul>
+		{{range $index, $element := .}}
+		<li>{{$index}} - {{$element}}</li>
+		{{end}}
+	</ul>
 </body>
 </html>

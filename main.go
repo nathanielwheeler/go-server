@@ -9,12 +9,13 @@ import (
 var tpl *template.Template
 
 func init() {
-	// This parses all of the files in the templates folder
-	tpl = template.Must(template.ParseGlob("templates/*"))
+	tpl = template.Must(template.ParseFiles("templates/index.gohtml"))
 }
 
 func main() {
-	err := tpl.ExecuteTemplate(os.Stdout, "index.gohtml", "<h1>Hello World!</h1>")
+	cats := []string{"Sophie", "Cecily", "Lulu"}
+
+	err := tpl.Execute(os.Stdout, cats)
 	if err != nil {
 		log.Fatalln(err)
 	}
