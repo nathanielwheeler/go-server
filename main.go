@@ -12,13 +12,13 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	nf, err := os.Create("index.html")
+	newfile, err := os.Create("index.html")
 	if err != nil {
 		log.Fatalln("unable to create index.html", err)
 	}
-	defer nf.Close()
+	defer newfile.Close()
 
-	err = tpl.Execute(os.Stdout, nil)
+	err = tpl.Execute(newfile, nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
