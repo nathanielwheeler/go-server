@@ -8,8 +8,18 @@ import (
 
 func main() {
 	tpl, err := template.ParseFiles("tpl.gohtml")
-	if err != nil { log.Fatalln(err) }
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	nf, err := os.Create("index.html")
+	if err != nil {
+		log.Fatalln("unable to create index.html", err)
+	}
+	defer nf.Close()
 
 	err = tpl.Execute(os.Stdout, nil)
-	if err != nil { log.Fatalln(err) }
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
