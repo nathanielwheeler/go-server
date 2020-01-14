@@ -6,19 +6,20 @@ import (
 	"text/template"
 )
 
+var tpl *template.Template
+
+func init() {
+	// This parses all of the files in the templates folder
+	tpl = template.Must(template.ParseGlob("templates/*"))
+}
+
 func main() {
-	tpl, err := template.ParseFiles("tpl.gohtml")
+	err := tpl.Execute(os.Stdout, nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	newfile, err := os.Create("index.html")
-	if err != nil {
-		log.Fatalln("unable to create index.html", err)
-	}
-	defer newfile.Close()
-
-	err = tpl.Execute(newfile, nil)
+	err = tpl.ExecuteTemplate(os.Stdout, "index.gohtml", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
