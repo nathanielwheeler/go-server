@@ -9,12 +9,10 @@
 	<title>Ludicrious Injections</title>
 </head>
 <body>
-	<h4>Excellent Cats:</h4>
-	{{/* Ranging with slices and structs */}}
-	<ul>
-		{{range .}}
-		<li>{{.Name}} - {{.Nickname}}</li>
-		{{end}}
-	</ul>
+
+Without date formatting: {{.}}
+
+With date formatting: {{fdateYMD .}}
+
 </body>
 </html>
