@@ -10,9 +10,14 @@
 </head>
 <body>
 
-<h1>Index Page: {{.}}</h1>
+<h1>Index Page: Injected Text.</h1>
 
-{{template "hello" .}}
+
+<main class="hello">
+	<h1>Hello World!</h1>
+	Injected Text.
+</main>
+
 
 </body>
 </html>
