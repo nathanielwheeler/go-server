@@ -1,9 +1,9 @@
 package main
 
 import (
+	"html/template"
 	"log"
-	"os"
-	"text/template"
+	"net/http"
 )
 
 var tpl *template.Template
@@ -13,8 +13,17 @@ func init() {
 }
 
 func main() {
-	err := tpl.ExecuteTemplate(os.Stdout, "index.gohtml", "Injected Text.")
+
+	http.HandleFunc("/", index)
+
+	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("public"))))
+
+	http.ListenAndServe(":8080", nil)
+}
+
+func index(res http.ResponseWriter, req *http.Request) {
+	err := tpl.ExecuteTemplate(res, "index.gohtml", nil)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("template didn't execute: ", err)
 	}
 }
